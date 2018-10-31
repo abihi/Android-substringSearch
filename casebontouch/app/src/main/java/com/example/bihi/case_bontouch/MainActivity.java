@@ -133,19 +133,19 @@ public class MainActivity extends AppCompatActivity {
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
         int index = alphabet.indexOf(searchString.toLowerCase().charAt(0));
         ArrayList<String> rowWordList = new ArrayList<>(mWordListOfLists.get(index));
+        String searchPattern = searchString.toLowerCase() + ".*";
+        Pattern pattern = Pattern.compile(searchPattern);
         for (String word : rowWordList) {
-            if (word.toLowerCase().startsWith(searchString.toLowerCase())) {
+            if(pattern.matcher(word).matches()){
                 substringList.add(word);
             }
         }
         return substringList;
     }
 
-    // å, ä, ö not allowed
     private boolean isValidText(String text) {
-        String TXT_PATTERN = "[a-zA-Z]+";
-        Pattern pattern = Pattern.compile(TXT_PATTERN);
-        Matcher matcher = pattern.matcher(text);
-        return matcher.matches();
+        String textPattern = "[a-zA-Z]+";
+        Pattern pattern = Pattern.compile(textPattern);
+        return pattern.matcher(text).matches();
     }
 }
