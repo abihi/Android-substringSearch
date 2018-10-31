@@ -27,11 +27,10 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
     private EditText searchEditText;
     private boolean finishedDownloadingWords = false;
-    private List<String> mWordList = new ArrayList<>();
     private ArrayList<ArrayList<String>> mWordListOfLists = new ArrayList<>();
     private List<String> mSubstringList = new ArrayList<>();
     private String [] infoText = {"Downloading wordlist!", "Search word not found!", "No results"};
-    WordListAdapter adapter;
+    private WordListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         return substringList;
     }
 
+    // å, ä, ö not allowed
     private boolean isValidText(String text) {
         String TXT_PATTERN = "[a-zA-Z]+";
         Pattern pattern = Pattern.compile(TXT_PATTERN);
